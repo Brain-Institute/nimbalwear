@@ -43,25 +43,28 @@ See [docs/limitations.md](docs/limitations.md) for more on device support.
 
 ## Installation
 
-nimbalwear requires Python 3.9–3.12 (newer versions cannot build the pinned matplotlib). To install the latest
-release directly from GitHub:
+nimbalwear requires Python 3.9–3.12 (newer versions cannot build the pinned matplotlib). These instructions install
+from the [Brain-Institute/nimbalwear](https://github.com/Brain-Institute/nimbalwear) fork. To install the latest
+version from its `main` branch:
 
 ```bash
-pip install git+https://github.com/nimbal/nimbalwear
+pip install git+https://github.com/Brain-Institute/nimbalwear
 ```
 
-To install a specific minor release, add the branch name, for example:
+To pin a specific version, add a tag or commit hash after `@`, for example:
 
 ```bash
-pip install git+https://github.com/nimbal/nimbalwear@0.21
+pip install git+https://github.com/Brain-Institute/nimbalwear@<tag-or-commit>
 ```
 
-To add nimbalwear as a dependency of another package, put this in `install_requires` (replace `[version]` with the
-minor-release branch):
+To add nimbalwear as a dependency of another package, put this in `install_requires` (replace `[ref]` with a tag,
+branch or commit):
 
 ```python
-install_requires=['nimbalwear@git+https://github.com/nimbal/nimbalwear@[version]']
+install_requires=['nimbalwear@git+https://github.com/Brain-Institute/nimbalwear@[ref]']
 ```
+
+The fork is based on the original [nimbal/nimbalwear](https://github.com/nimbal/nimbalwear) project.
 
 See [docs/installation.md](docs/installation.md) for virtual environments, installing for development, and
 troubleshooting.

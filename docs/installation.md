@@ -38,23 +38,30 @@ conda activate nimbalwear
 
 ## 2. Install nimbalwear
 
-Latest release:
+These instructions install from the [Brain-Institute/nimbalwear](https://github.com/Brain-Institute/nimbalwear) fork.
+
+Latest version (the `main` branch):
 
 ```bash
-pip install git+https://github.com/nimbal/nimbalwear
+pip install git+https://github.com/Brain-Institute/nimbalwear
 ```
 
-A specific minor release (each minor release has its own branch):
+A specific version, pinned to a tag or commit hash:
 
 ```bash
-pip install git+https://github.com/nimbal/nimbalwear@0.21
+pip install git+https://github.com/Brain-Institute/nimbalwear@<tag-or-commit>
 ```
+
+Pinning to a commit gives reproducible installs. The fork has no per-release branches such as `0.21`.
 
 As a dependency of another package (`setup.py` / `setup.cfg`):
 
 ```python
-install_requires=['nimbalwear@git+https://github.com/nimbal/nimbalwear@[version]']
+install_requires=['nimbalwear@git+https://github.com/Brain-Institute/nimbalwear@[ref]']
 ```
+
+The fork is based on the original [nimbal/nimbalwear](https://github.com/nimbal/nimbalwear) project, which
+has per-release branches (`0.18` to `0.21`).
 
 ## 3. Check the install
 
@@ -73,7 +80,7 @@ from nimbalwear import Study, Device
 Clone the repository and install it in editable mode, so changes to the source take effect without reinstalling:
 
 ```bash
-git clone https://github.com/nimbal/nimbalwear.git
+git clone https://github.com/Brain-Institute/nimbalwear.git
 cd nimbalwear
 pip install -e .
 ```
