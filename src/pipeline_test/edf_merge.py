@@ -8,6 +8,19 @@ def combine_sensor_files(file_list: list,
                          return_raw: bool = False,
                          export_file: bool = False,
                          output_filename: str or None = None):
+    """ Merges sensor-specific files (e.g., accelerometer-only, gyroscope-only) that were split using the nimbalwear
+        pipeline back into a 'raw' multi-sensor EDF file
+
+        Parameters:
+            file_list: list
+                list of files that were generated from a single input file
+            return_raw: bool
+                if True, returns edfio.EdfSignal object of each file listed in file_list
+            export_file: bool
+                if True, saves merged EDF file to pathway specified by output_filename
+            output_filename: str
+                pathway and filename of file to save if export_file is True
+    """
 
     # TODO: sort out things related to EDF "records"?
 
@@ -29,7 +42,7 @@ def combine_sensor_files(file_list: list,
                                sampling_frequency=objs[idx].signals[sig].sampling_frequency,
                                label=objs[idx].signals[sig].label))
 
-    # ensures signals are all the same duration
+    # ensures signals are all the same duration by zero-padding all signals to match the length of the longest signal
     durs = [len(d[i].data)/d[i].sampling_frequency for i in range(len(d))]
     target_dur = max(durs)
 
@@ -47,7 +60,7 @@ def combine_sensor_files(file_list: list,
 
     obj_out = Edf(d)
 
-    # sets physical_dimension labels from raw signals
+    # sets physical_dimension labels (i.e., measurement unit) from raw signals
     use_idx = 0
     for idx in range(len(objs)):
         for sig in range(len(objs[idx].signals)):
@@ -99,4 +112,4 @@ if __name__ == "__main__":
                                                  return_raw=False)
 
     # import combined file
-    x = read_edf(os.path.join(output_dir, "OND09_SBH0001_01_AXV6_RAnkle.edf"))
+    # x = read_edf(os.path.join(output_dir, "OND09_SBH0001_01_AXV6_RAnkle.edf"))
